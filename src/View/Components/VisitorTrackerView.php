@@ -3,20 +3,11 @@
 namespace XBlade\VisitorTracker\View\Components;
 
 use Illuminate\View\Component;
-use Illuminate\Support\Facades\File;
 
-class VisitorTrackerView extends Component
+class VisitorTracker extends Component
 {
-    public array $visitors;
-
-    public function __construct()
-    {
-        $filePath = config('visitor-tracker.storage_path', storage_path('app/visitor.json'));
-        $this->visitors = File::exists($filePath) ? json_decode(File::get($filePath), true) : [];
-    }
-
     public function render()
     {
-        return view('visitor-tracker::components.visitor-tracker-views');
+        return view('visitor-tracker::visitor');
     }
 }
