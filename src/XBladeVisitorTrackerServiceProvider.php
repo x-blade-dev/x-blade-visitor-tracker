@@ -12,13 +12,10 @@ class XBladeVisitorTrackerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        // Register Blade Component
+        // 🔹 Register Blade Component
         Blade::component('x-blade-visitor-tracker-views', VisitorTracker::class);
 
-        // Load views
-        // $this->loadViewsFrom(__DIR__ . '/../resources/views', 'visitor-tracker');
-
-        // 🔹 Load routes & views from the package
+        // 🔹 Load routes & views
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'visitor-tracker');
 
@@ -27,23 +24,13 @@ class XBladeVisitorTrackerServiceProvider extends ServiceProvider
             __DIR__ . '/../config/visitor-tracker.php' => config_path('visitor-tracker.php'),
         ], 'visitor-tracker-config');
 
-        // 🔹 Publish views
+        // 🔹 Publish views for customization
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/visitor-tracker'),
         ], 'visitor-tracker-views');
 
-        // 🔹 Publish storage file (ensure directory exists)
-        $storagePath = storage_path('app/visitor.json');
-        if (!file_exists(dirname($storagePath))) {
-            mkdir(dirname($storagePath), 0755, true);
-        }
-        if (!file_exists($storagePath)) {
-            file_put_contents($storagePath, json_encode([]));
-        }
-
-        $this->publishes([
-            __DIR__ . '/../storage/visitor.json' => $storagePath,
-        ], 'visitor-tracker-storage');
+        // 🔹 Ensure storage file exists
+        $this->ensureStorageFileExists();
 
         // 🔹 Register middleware automatically
         if ($this->app->bound(Kernel::class)) {
@@ -55,5 +42,17 @@ class XBladeVisitorTrackerServiceProvider extends ServiceProvider
     {
         // 🔹 Merge configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/visitor-tracker.php', 'visitor-tracker');
+    }
+
+    protected function ensureStorageFileExists()
+    {
+        $storagePath = storage_path('app/visitor.json');
+
+        if (!file_exists($storagePath)) {
+            if (!file_exists(dirname($storagePath))) {
+                mkdir(dirname($storagePath), 0755, true);
+            }
+            file_put_contents($storagePath, json_encode([]));
+        }
     }
 }
