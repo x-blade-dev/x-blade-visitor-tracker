@@ -33,27 +33,6 @@ To publish the visitor log view:
 php artisan vendor:publish --tag=visitor-tracker-views
 ```
 
-## Usage
-
-### Register Middleware
-For Laravel > 11, register the middleware in `bootstrap/app.php`:
-
-```php
-$app->middleware([
-    \XBlade\VisitorTracker\Http\Middleware\TrackVisitor::class,
-]);
-```
-
-For Laravel < 10 and below, add the middleware to `app/Http/Kernel.php`:
-
-```php
-protected $middleware = [
-    \XBlade\VisitorTracker\Http\Middleware\TrackVisitor::class,
-];
-```
-
-This middleware will automatically log visitor information on every request.
-
 ### View Visitor Logs
 You can view visitor logs by accessing:
 
