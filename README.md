@@ -30,7 +30,7 @@ This will create a `config/visitor-tracker.php` file where you can modify settin
 To publish the visitor log view:
 
 ```sh
-php artisan vendor:publish --tag=visitor-tracker-views
+php artisan vendor:publish --tag=visitor-tracker-views --force
 ```
 
 ### View Visitor Logs
