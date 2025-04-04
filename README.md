@@ -34,10 +34,10 @@ php artisan vendor:publish --tag=visitor-tracker-views --force
 ```
 
 ### View Visitor Logs
-You can view visitor logs by accessing:
+You can view visitor logs by using short tag html:
 
 ```
-/visitor-log
+<x-blade-visitor-tracker-views />
 ```
 
 This will display a simple table with all visitor entries.
