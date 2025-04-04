@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between bg-blue-500 text-white p-4 rounded-lg">
         <div>
             <p class="text-sm font-medium">Today's Total Visits</p>
-            <p class="text-3xl font-bold">{{ count($visitors) }}</p>
+            <p id="visitorCount" class="text-3xl font-bold">0</p> <!-- AJAX target -->
         </div>
         <button id="toggleDetails" class="bg-white text-blue-500 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
             View Details
@@ -31,10 +31,28 @@
     </div>
 </div>
 
-<!-- Toggle Detail Script -->
+<!-- Toggle Detail Script + Realtime Fetch -->
 <script>
-    document.getElementById('toggleDetails').addEventListener('click', function() {
+    // Toggle detail section
+    document.getElementById('toggleDetails').addEventListener('click', function () {
         const details = document.getElementById('visitorDetails');
         details.classList.toggle('hidden');
     });
+
+    // Function to fetch visitor count via AJAX
+    async function fetchVisitorCount() {
+        try {
+            const response = await fetch('/api/visitor-count');
+            const data = await response.json();
+            document.getElementById('visitorCount').textContent = data.count;
+        } catch (error) {
+            console.error('Failed to fetch visitor count:', error);
+        }
+    }
+
+    // First load
+    fetchVisitorCount();
+
+    // Polling every 5 seconds
+    setInterval(fetchVisitorCount, 5000);
 </script>

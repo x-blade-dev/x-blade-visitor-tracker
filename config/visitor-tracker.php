@@ -7,9 +7,9 @@ return [
     | Visitor Log Storage Path
     |--------------------------------------------------------------------------
     |
-    | Tentukan di mana file JSON akan disimpan.
-    | Secara default, file akan disimpan di `storage/app/visitor.json`.
-    | Jika ingin menyimpannya di tempat lain, ubah path-nya di sini.
+    | Specify where the JSON file will be stored.
+    | By default, the file will be stored in `storage/app/visitor.json`.
+    | If you want to store it elsewhere, change the path here.
     |
     */
 
@@ -20,7 +20,7 @@ return [
     | Enable Visitor Logging
     |--------------------------------------------------------------------------
     |
-    | Jika false, middleware tidak akan mencatat visitor.
+    | If set to false, the middleware will not log visitors.
     |
     */
 
@@ -31,8 +31,8 @@ return [
     | Exclude IPs from Logging
     |--------------------------------------------------------------------------
     |
-    | IP yang masuk dalam daftar ini tidak akan dicatat dalam visitor log.
-    | Misalnya, kamu ingin mengecualikan localhost (127.0.0.1).
+    | IP addresses in this list will not be recorded in the visitor log.
+    | For example, you might want to exclude localhost (127.0.0.1).
     |
     */
 
