@@ -1,0 +1,40 @@
+{
+    "name": "x-blade/x-blade-visitor-tracker",
+    "description": "A simple Laravel package to track website visitors and store them in a JSON file.",
+    "keywords": ["laravel", "visitor", "tracker", "x-blade"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "x-blade.dev",
+            "email": "hello@x-blade.dev"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "illuminate/support": "^9.0|^10.0|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "XBlade\\VisitorTracker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "XBlade\\VisitorTracker\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "XBlade\\VisitorTracker\\XBladeVisitorTrackerServiceProvider"
+            ],
+            "dont-discover": []
+        }
+    },
+    "suggest": {
+        "geoip2/geoip2": "Required if you want to track visitor locations"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
