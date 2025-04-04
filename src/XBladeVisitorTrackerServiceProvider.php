@@ -13,7 +13,7 @@ class XBladeVisitorTrackerServiceProvider extends ServiceProvider
     public function boot()
     {
         // 🔹 Register Blade Component
-        Blade::component('x-blade-visitor-tracker-views', VisitorTrackerView::class);
+        Blade::component('blade-visitor-tracker-views', VisitorTrackerView::class);
 
         // 🔹 Load views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'visitor-tracker');

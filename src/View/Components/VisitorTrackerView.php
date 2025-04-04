@@ -17,8 +17,6 @@ class VisitorTrackerView extends Component
 
     public function render()
     {
-        return view('visitor-tracker::visitor', [
-            'visitors' => $this->visitors
-        ]);
+        return view('visitor-tracker::visitor', ['visitors' => $this->visitors]);
     }
 }
