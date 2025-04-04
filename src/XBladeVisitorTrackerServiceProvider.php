@@ -4,12 +4,20 @@ namespace XBlade\VisitorTracker;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Support\Facades\Blade;
+use XBlade\VisitorTracker\View\Components\VisitorTrackerView;
 use XBlade\VisitorTracker\Http\Middleware\TrackVisitor;
 
 class XBladeVisitorTrackerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        // Register Blade Component
+        Blade::component('x-blade-visitor-tracker-views', VisitorTrackerView::class);
+
+        // Load views
+        // $this->loadViewsFrom(__DIR__ . '/../resources/views', 'visitor-tracker');
+
         // 🔹 Load routes & views from the package
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'visitor-tracker');
