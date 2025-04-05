@@ -289,14 +289,19 @@
         `<span class="text-gray-400">New</span>`;
     prevCount = totalVisits;
     
-    // Update visitor list - tampilkan SEMUA visitor (bukan hanya unique)
-    elements.list.innerHTML = visitors.length ? visitors.slice(0,10).map(v => { // Tampilkan max 100
+    elements.list.innerHTML = visitors.length ? 
+    // Urutkan dari yang terbaru (waktu descending)
+    [...visitors].sort((a, b) => new Date(b.time) - new Date(a.time))
+    // Ambil 10 teratas
+    .slice(0, 10)
+    // Map ke HTML
+    .map(v => {
         const browser = getBrowserInfo(v.agent);
         return `
         <li class="group py-3 px-4 bg-gray-50 rounded-md">
             <div class="flex justify-between items-start gap-3">
                 <div class="flex items-start space-x-3 min-w-0">
-                    <div class="bg-blue-100 p-2 rounded-full mt-1">
+                    <div class="bg-blue-100 p-2 rounded-full mt-2">
                         <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -305,9 +310,6 @@
                         <p class="font-medium text-gray-800 truncate">${v.ip || 'N/A'}</p>
                         <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-sm">
                             <div class="flex items-center text-gray-600">
-                                <svg class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                </svg>
                                 <span>${deviceType(v.agent)}</span>
                             </div>
                         </div>
