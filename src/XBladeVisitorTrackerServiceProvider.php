@@ -12,6 +12,8 @@ class XBladeVisitorTrackerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
         // 🔹 Register Blade Component
         Blade::component('blade-visitor-tracker-views', VisitorTrackerView::class);
 
