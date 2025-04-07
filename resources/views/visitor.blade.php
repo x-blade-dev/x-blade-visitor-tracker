@@ -1,5 +1,5 @@
-<div class="max-w-4xl p-4  mx-auto">
-    <div class="bg-white p-4 mt-12 rounded-lg border border-gray-200 shadow-sm">
+<div class="w-auto mx-auto">
+    <div class="bg-white p-4 mt-0 rounded-lg border border-gray-200 shadow-sm">
         <!-- Header -->
         <div class="flex justify-between items-start mb-6">
             <div>
